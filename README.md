@@ -46,12 +46,15 @@ Không cần suy nghĩ, app chọn giúp bạn 😄
 ```bash
 git clone https://github.com/DI-ngocth/whichfoodtoday.git
 cd whichfoodtoday
+
+3️⃣ Cài dependency
 npm install
-npm run build
+
 
 🏗 Build app desktop
 Build cho hệ điều hành hiện tại
-Shellnpm run buildShow more lines
+npm run build
+
 Kết quả nằm trong thư mục:
 dist/
 
