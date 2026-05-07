@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hôm nay ăn gì?</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-low": "#f3f3f3",
+            "surface-dim": "#dadada",
+            "on-secondary-container": "#6e5400",
+            "on-surface-variant": "#59413a",
+            "on-primary": "#ffffff",
+            "primary-container": "#ff7043",
+            "secondary": "#765b00",
+            "surface": "#f9f9f9",
+            "tertiary-container": "#5aae5f",
+            "secondary-fixed": "#ffdf93",
+            "surface-variant": "#e2e2e2",
+            "primary-fixed": "#ffdbd0",
+            "tertiary": "#126d27",
+            "on-primary-fixed": "#3a0a00",
+            "error": "#ba1a1a",
+            "outline": "#8d7169",
+            "tertiary-fixed": "#9ff79f",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#2f3131",
+            "outline-variant": "#e0bfb6",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#641800",
+            "inverse-on-surface": "#f1f1f1",
+            "primary": "#ac3509",
+            "secondary-container": "#fdc825",
+            "inverse-primary": "#ffb59f",
+            "surface-tint": "#ac3509",
+            "surface-container-highest": "#e2e2e2",
+            "on-tertiary-container": "#003d0f",
+            "surface-container-high": "#e8e8e8",
+            "secondary-fixed-dim": "#f3c01a",
+            "on-background": "#1a1c1c",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#1a1c1c",
+            "background": "#f9f9f9",
+            "surface-container": "#eeeeee",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed": "#241a00",
+            "on-tertiary-fixed": "#002105",
+            "tertiary-fixed-dim": "#83da85"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "xl": "64px",
+            "margin": "48px",
+            "xs": "4px",
+            "md": "24px",
+            "sm": "12px",
+            "lg": "40px",
+            "base": "8px",
+            "gutter": "24px"
+          },
+          fontFamily: {
+            "sans": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          fontSize: {
+            "body-lg":    ["18px", { lineHeight: "1.6", fontWeight: "500" }],
+            "display-lg": ["48px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "800" }],
+            "headline-lg":["32px", { lineHeight: "1.3", fontWeight: "700" }],
+            "headline-md":["24px", { lineHeight: "1.4", fontWeight: "700" }],
+            "body-md":    ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+            "label-md":   ["14px", { lineHeight: "1.0", letterSpacing: "0.01em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-app-region: no-drag; }
+    .app-drag { -webkit-app-region: drag; }
+    .no-drag  { -webkit-app-region: no-drag; }
+    /* slot-machine shake */
+    @keyframes spin-shake {
+      0%   { transform: scale(1); }
+      20%  { transform: scale(1.04) rotate(-1.5deg); }
+      50%  { transform: scale(1.05) rotate(1.5deg); }
+      80%  { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    .spin-anim { animation: spin-shake 0.55s ease; }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-x-hidden">
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <nav id="sidebar" class="fixed h-screen w-64 left-0 top-0 pt-xl bg-surface-container-low shadow-[20px_0_40px_rgba(0,0,0,0.05)] flex flex-col gap-md px-md py-lg border-r border-outline-variant/20 z-40 app-drag">
+    <div class="mb-lg px-sm no-drag">
+      <h1 class="text-headline-md font-bold text-primary tracking-tight">Đang đói?</h1>
+      <p class="text-on-surface-variant mt-xs text-body-md">Chọn món ngay thôi!</p>
+    </div>
+
+    <div class="flex-1 flex flex-col gap-sm no-drag">
+      <!-- Quay món -->
+      <button data-view="spin" class="nav-btn flex items-center gap-sm px-md py-sm rounded-xl transition-all duration-200 w-full text-left">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0">casino</span>
+        <span class="text-label-md font-semibold">Quay món</span>
+      </button>
+      <!-- Danh sách -->
+      <button data-view="list" class="nav-btn flex items-center gap-sm px-md py-sm rounded-xl transition-all duration-200 w-full text-left">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0">restaurant_menu</span>
+        <span class="text-label-md font-semibold">Danh sách món</span>
+      </button>
+      <!-- Lọc & Quyết định -->
+      <button data-view="decide" class="nav-btn flex items-center gap-sm px-md py-sm rounded-xl transition-all duration-200 w-full text-left">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0">bolt</span>
+        <span class="text-label-md font-semibold">Lọc &amp; Quyết định</span>
+      </button>
+    </div>
+
+    <div class="mt-auto no-drag">
+      <button id="nav-random-btn" class="w-full bg-primary hover:bg-surface-tint text-on-primary text-label-md font-semibold py-sm rounded-full shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center gap-xs">
+        <span class="material-symbols-outlined text-[18px]">lightbulb</span>
+        Gợi ý ngẫu nhiên
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ MAIN ═══════════════════ -->
+  <main class="flex-1 ml-64 min-h-screen">
+
+    <!-- ──── VIEW: QUAY MÓN ──── -->
+    <section id="view-spin" class="view hidden flex-col items-center justify-center min-h-screen p-margin gap-lg">
+      <!-- Question card -->
+      <div class="text-center bg-surface-container-lowest p-xl rounded-[4rem] shadow-[0_20px_40px_rgba(172,53,9,0.08)] border border-surface-variant/50 w-full max-w-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+        <h2 class="text-display-lg font-black text-primary mb-md relative z-10">Hôm nay ăn gì?</h2>
+        <p class="text-body-lg text-on-surface-variant relative z-10">Nhấn nút bên dưới để vận may lên tiếng!</p>
+      </div>
+
+      <!-- Big spin button -->
+      <button id="btn-spin" class="group relative w-56 h-56 rounded-full bg-gradient-to-br from-primary to-primary-container shadow-[0_20px_40px_rgba(172,53,9,0.3)] hover:shadow-[0_30px_60px_rgba(172,53,9,0.4)] transform hover:scale-105 active:scale-95 transition-all duration-300 flex flex-col items-center justify-center gap-sm overflow-hidden border-8 border-surface-container-lowest">
+        <div class="absolute inset-0 bg-white/20 group-hover:bg-transparent transition-colors duration-300 rounded-full"></div>
+        <span class="material-symbols-outlined text-on-primary text-[72px] relative z-10" style="font-variation-settings:'FILL' 1">ramen_dining</span>
+        <span class="text-headline-lg font-black text-on-primary tracking-wider relative z-10">QUAY</span>
+      </button>
+
+      <!-- Filters -->
+      <div id="spin-filters" class="flex flex-wrap justify-center gap-sm">
+        <button class="spin-chip px-md py-sm bg-primary-fixed text-on-primary-fixed text-label-md font-semibold rounded-full shadow-sm transition-colors active-chip" data-filter="all">Tất cả</button>
+        <button class="spin-chip px-md py-sm bg-surface-container-high text-on-surface text-label-md font-semibold rounded-full shadow-sm transition-colors" data-filter="cheap">Rẻ 💸</button>
+        <button class="spin-chip px-md py-sm bg-surface-container-high text-on-surface text-label-md font-semibold rounded-full shadow-sm transition-colors" data-filter="gần">Gần 📍</button>
+        <button class="spin-chip px-md py-sm bg-surface-container-high text-on-surface text-label-md font-semibold rounded-full shadow-sm transition-colors" data-filter="một mình">Một mình 🙋</button>
+        <button class="spin-chip px-md py-sm bg-surface-container-high text-on-surface text-label-md font-semibold rounded-full shadow-sm transition-colors" data-filter="nhóm">Nhóm 👥</button>
+      </div>
+
+      <!-- Result -->
+      <div id="spin-result" class="hidden w-full max-w-3xl bg-secondary-fixed/20 p-lg rounded-lg border border-secondary-fixed-dim/30 flex flex-col md:flex-row items-center gap-lg">
+        <div class="w-36 h-36 shrink-0 rounded-full bg-surface-container-lowest shadow-md overflow-hidden flex items-center justify-center text-[64px]" id="result-emoji">🍜</div>
+        <div class="text-center md:text-left flex-1">
+          <h3 id="result-name" class="text-headline-md font-bold text-secondary mb-sm"></h3>
+          <p id="result-copy" class="text-body-md text-on-secondary-container mb-md"></p>
+          <div id="result-tags" class="flex flex-wrap gap-xs justify-center md:justify-start"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──── VIEW: DANH SÁCH MÓN ──── -->
+    <section id="view-list" class="view hidden p-margin">
+      <div class="max-w-[1000px] mx-auto">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md">
+          <div>
+            <h2 class="text-display-lg font-black text-primary mb-xs">Danh sách món</h2>
+            <p class="text-on-surface-variant text-body-lg">Kho tàng ẩm thực của bạn, luôn sẵn sàng phục vụ.</p>
+          </div>
+          <!-- Search -->
+          <div class="relative w-full md:w-72">
+            <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-outline">search</span>
+            </div>
+            <input id="search-input" class="w-full bg-surface-container-high border-none rounded-full py-sm pl-10 pr-md text-body-md text-on-surface focus:ring-2 focus:ring-primary shadow-inner placeholder-outline" placeholder="Tìm kiếm món ăn..." type="text" />
+          </div>
+        </div>
+
+        <!-- Food Grid -->
+        <div id="food-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"></div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="hidden text-center py-16 text-on-surface-variant">
+          <div class="text-[56px] mb-md">🥺</div>
+          <p class="text-body-lg">Danh sách trống rồi!<br>Thêm món ăn vào đi nào.</p>
+        </div>
+      </div>
+
+      <!-- FAB -->
+      <button id="btn-add-food" class="fixed bottom-lg right-lg bg-primary text-on-primary w-14 h-14 rounded-2xl shadow-xl hover:shadow-2xl hover:bg-surface-tint hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group z-50 no-drag">
+        <span class="material-symbols-outlined text-[28px] group-hover:rotate-90 transition-transform duration-300">add</span>
+      </button>
+    </section>
+
+    <!-- ──── VIEW: LỌC & QUYẾT ĐỊNH ──── -->
+    <section id="view-decide" class="view hidden p-lg md:p-margin max-w-7xl mx-auto">
+      <div class="mb-xl text-center md:text-left">
+        <h1 class="text-display-lg font-black text-primary mb-sm">Lọc &amp; Quyết định</h1>
+        <p class="text-body-lg text-on-surface-variant">Trợ lý ăn uống cá nhân của bạn. Cứ chọn theo cảm xúc, việc còn lại để app lo!</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <!-- Filters column -->
+        <div class="lg:col-span-8 flex flex-col gap-lg">
+          <!-- Budget -->
+          <div class="bg-surface-container-low rounded-xl p-md shadow-sm">
+            <h3 class="text-headline-md font-bold text-primary flex items-center gap-sm mb-md">
+              <span class="material-symbols-outlined">payments</span>Túi tiền hôm nay?
+            </h3>
+            <div class="flex flex-wrap gap-sm" id="decide-price-btns">
+              <button data-val="all"       class="decide-price px-md py-sm rounded-full text-label-md font-semibold bg-primary-container text-on-primary-container shadow-sm transition-colors duration-200 flex items-center gap-xs">Tất cả</button>
+              <button data-val="cheap"     class="decide-price px-md py-sm rounded-full text-label-md font-semibold bg-surface-variant text-on-surface-variant transition-colors duration-200 flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">savings</span>Rẻ mà ngon</button>
+              <button data-val="medium"    class="decide-price px-md py-sm rounded-full text-label-md font-semibold bg-surface-variant text-on-surface-variant transition-colors duration-200 flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">payments</span>Vừa phải</button>
+              <button data-val="expensive" class="decide-price px-md py-sm rounded-full text-label-md font-semibold bg-surface-variant text-on-surface-variant transition-colors duration-200 flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">diamond</span>Xịn xò sang chảnh</button>
+            </div>
+          </div>
+
+          <!-- Mode: solo/group -->
+          <div class="bg-surface-container-low rounded-xl p-md shadow-sm">
+            <h3 class="text-headline-md font-bold text-primary flex items-center gap-sm mb-md">
+              <span class="material-symbols-outlined">group</span>Đi với ai?
+            </h3>
+            <div class="flex gap-sm" id="decide-mode-btns">
+              <button data-val="all" class="decide-mode flex-1 p-md rounded-lg bg-secondary-container text-on-secondary-container border border-secondary text-center transition-all duration-200">
+                <span class="material-symbols-outlined block mb-xs">people</span>
+                <span class="text-label-md font-semibold">Không quan trọng</span>
+              </button>
+              <button data-val="một mình" class="decide-mode flex-1 p-md rounded-lg bg-surface border border-outline-variant/30 text-center transition-all duration-200">
+                <span class="material-symbols-outlined block mb-xs">person</span>
+                <span class="text-label-md font-semibold">Một mình</span>
+              </button>
+              <button data-val="nhóm" class="decide-mode flex-1 p-md rounded-lg bg-surface border border-outline-variant/30 text-center transition-all duration-200">
+                <span class="material-symbols-outlined block mb-xs">groups</span>
+                <span class="text-label-md font-semibold">Team đông đủ</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decision area -->
+        <div class="lg:col-span-4 flex flex-col gap-lg">
+          <div class="bg-primary-container rounded-xl p-lg shadow-md flex flex-col items-center justify-center text-center min-h-[300px] relative overflow-hidden">
+            <div class="absolute top-[-20%] right-[-10%] opacity-10 pointer-events-none">
+              <span class="material-symbols-outlined text-[150px]">restaurant</span>
+            </div>
+            <h2 class="text-headline-lg font-bold text-on-primary-container mb-md relative z-10">Sẵn sàng chưa?</h2>
+            <p class="text-body-md text-on-primary-container/80 mb-xl relative z-10">Dựa trên lựa chọn của bạn, chúng tôi đã chuẩn bị sẵn những gợi ý tuyệt vời nhất.</p>
+            <button id="btn-decide" class="w-full py-lg px-md bg-primary text-on-primary rounded-full text-headline-md font-bold hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-sm relative z-10">
+              <span class="material-symbols-outlined">bolt</span>Quyết luôn đi!
+            </button>
+          </div>
+
+          <!-- Decision result -->
+          <div id="decide-result" class="hidden bg-secondary-fixed/20 rounded-xl p-md border border-secondary-fixed-dim/30 text-center">
+            <div id="decide-emoji" class="text-[48px] mb-sm">🍜</div>
+            <h3 id="decide-name" class="text-headline-md font-bold text-secondary mb-xs"></h3>
+            <p id="decide-copy" class="text-body-md text-on-secondary-container"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════ ADD/EDIT MODAL ═══════════════════ -->
+  <div id="modal-overlay" class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(172,53,9,0.05)] p-lg border border-outline-variant/30 w-full max-w-2xl mx-md flex flex-col gap-md">
+      <div class="mb-sm text-center">
+        <span class="material-symbols-outlined text-primary text-5xl mb-sm block" style="font-variation-settings:'FILL' 1" id="modal-icon">add_circle</span>
+        <h1 id="modal-title" class="text-headline-lg font-bold text-on-background">Thêm món mới</h1>
+        <p class="text-body-md text-on-surface-variant">Lưu lại những món ngon để lần sau đỡ phải nghĩ!</p>
+      </div>
+
+      <form id="food-form" class="flex flex-col gap-md">
+        <!-- Name -->
+        <div class="flex flex-col gap-sm">
+          <label class="text-label-md font-semibold text-on-surface" for="input-name">Tên món/quán *</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">restaurant</span>
+            <input id="input-name" class="w-full bg-surface-container-low border-none rounded-full py-sm pl-11 pr-sm text-body-md text-on-background placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all shadow-inner" placeholder="VD: Bún chả Hương Liên, Phở Thìn..." type="text" />
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="flex flex-col gap-sm">
+          <label class="text-label-md font-semibold text-on-surface">Mức giá</label>
+          <div class="flex gap-sm flex-wrap" id="price-radio-group">
+            <label class="cursor-pointer">
+              <input class="peer sr-only" name="price" type="radio" value="cheap" checked />
+              <div class="px-md py-sm rounded-full border border-outline-variant text-on-surface-variant peer-checked:bg-secondary-container peer-checked:text-on-secondary-container peer-checked:border-secondary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">savings</span>Rẻ
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input class="peer sr-only" name="price" type="radio" value="medium" />
+              <div class="px-md py-sm rounded-full border border-outline-variant text-on-surface-variant peer-checked:bg-secondary-container peer-checked:text-on-secondary-container peer-checked:border-secondary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">payments</span>Vừa
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input class="peer sr-only" name="price" type="radio" value="expensive" />
+              <div class="px-md py-sm rounded-full border border-outline-variant text-on-surface-variant peer-checked:bg-secondary-container peer-checked:text-on-secondary-container peer-checked:border-secondary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">diamond</span>Sang chảnh
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-col gap-sm">
+          <label class="text-label-md font-semibold text-on-surface">Tags (Đặc điểm)</label>
+          <div class="flex gap-sm flex-wrap" id="tag-checkbox-group">
+            <label class="cursor-pointer">
+              <input class="peer sr-only" type="checkbox" value="ăn nhanh" />
+              <div class="px-md py-sm rounded-full border border-outline-variant bg-surface-container text-on-surface-variant peer-checked:bg-tertiary-container peer-checked:text-on-tertiary-container peer-checked:border-tertiary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">timer</span>Ăn nhanh
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input class="peer sr-only" type="checkbox" value="gần" />
+              <div class="px-md py-sm rounded-full border border-outline-variant bg-surface-container text-on-surface-variant peer-checked:bg-tertiary-container peer-checked:text-on-tertiary-container peer-checked:border-tertiary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">location_on</span>Gần
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input class="peer sr-only" type="checkbox" value="một mình" />
+              <div class="px-md py-sm rounded-full border border-outline-variant bg-surface-container text-on-surface-variant peer-checked:bg-tertiary-container peer-checked:text-on-tertiary-container peer-checked:border-tertiary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">person</span>Một mình
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input class="peer sr-only" type="checkbox" value="nhóm" />
+              <div class="px-md py-sm rounded-full border border-outline-variant bg-surface-container text-on-surface-variant peer-checked:bg-tertiary-container peer-checked:text-on-tertiary-container peer-checked:border-tertiary-container peer-checked:font-bold transition-all text-body-md flex items-center gap-xs">
+                <span class="material-symbols-outlined text-sm">groups</span>Nhóm
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <hr class="border-outline-variant/30 my-sm" />
+
+        <div class="flex gap-md justify-end">
+          <button type="button" id="btn-cancel" class="px-lg py-sm rounded-full text-label-md font-semibold text-primary bg-surface-container-low hover:bg-surface-variant/50 transition-colors">Hủy</button>
+          <button type="submit" id="btn-save" class="px-lg py-sm rounded-full text-label-md font-semibold text-on-primary bg-primary hover:scale-[0.98] hover:shadow-md transition-all flex items-center gap-xs">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">save</span>Lưu món này
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

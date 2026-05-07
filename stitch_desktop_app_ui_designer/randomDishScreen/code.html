@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hôm nay ăn gì?</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f3f3f3",
+                      "surface-dim": "#dadada",
+                      "on-secondary-container": "#6e5400",
+                      "on-surface-variant": "#59413a",
+                      "on-tertiary-fixed-variant": "#005318",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#ff7043",
+                      "secondary": "#765b00",
+                      "surface": "#f9f9f9",
+                      "tertiary-container": "#5aae5f",
+                      "secondary-fixed": "#ffdf93",
+                      "surface-variant": "#e2e2e2",
+                      "on-primary-fixed-variant": "#852300",
+                      "primary-fixed": "#ffdbd0",
+                      "tertiary": "#126d27",
+                      "on-primary-fixed": "#3a0a00",
+                      "error": "#ba1a1a",
+                      "outline": "#8d7169",
+                      "tertiary-fixed": "#9ff79f",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#2f3131",
+                      "outline-variant": "#e0bfb6",
+                      "tertiary-fixed-dim": "#83da85",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#641800",
+                      "inverse-on-surface": "#f1f1f1",
+                      "surface-bright": "#f9f9f9",
+                      "primary": "#ac3509",
+                      "on-secondary-fixed-variant": "#594400",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-tertiary-fixed": "#002105",
+                      "secondary-container": "#fdc825",
+                      "inverse-primary": "#ffb59f",
+                      "surface-tint": "#ac3509",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#003d0f",
+                      "surface-container-high": "#e8e8e8",
+                      "secondary-fixed-dim": "#f3c01a",
+                      "on-background": "#1a1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#241a00",
+                      "on-surface": "#1a1c1c",
+                      "background": "#f9f9f9",
+                      "surface-container": "#eeeeee",
+                      "on-error": "#ffffff",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "64px",
+                      "margin": "48px",
+                      "xs": "4px",
+                      "md": "24px",
+                      "sm": "12px",
+                      "lg": "40px",
+                      "base": "8px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "label-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.01em", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+<!-- Top App Bar (Mobile) -->
+<header class="md:hidden flex justify-between items-center px-lg py-sm w-full bg-surface/80 backdrop-blur-md shadow-sm docked full-width top-0 z-50">
+<div class="font-headline-lg text-headline-lg font-extrabold text-primary tracking-tight">Hôm nay ăn gì?</div>
+<div class="flex gap-sm">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:text-primary-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden md:flex flex-col gap-md px-md py-lg h-full border-r border-outline-variant/20 bg-surface-container-low shadow-[20px_0_40px_rgba(0,0,0,0.05)] fixed w-64 left-0 top-0 pt-xl z-40">
+<div class="mb-lg px-sm">
+<h1 class="font-headline-md text-headline-md text-primary mb-xs">Đang đói?</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Chọn món ngay thôi!</p>
+</div>
+<div class="flex-1 flex flex-col gap-sm">
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-bold rounded-xl scale-105 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">casino</span>
+<span class="font-label-md text-label-md">Quay món</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 hover:scale-105 hover:shadow-md transition-all duration-300 rounded-xl" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-md text-label-md">Danh sách món</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 hover:scale-105 hover:shadow-md transition-all duration-300 rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Cài đặt</span>
+</a>
+</div>
+<button class="mt-auto w-full py-sm bg-primary text-on-primary font-label-md text-label-md rounded-full shadow-md hover:scale-105 transition-transform duration-200">
+            Gợi ý ngẫu nhiên
+        </button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-gutter md:p-margin flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-screen">
+<!-- Hero Decision Section -->
+<div class="w-full max-w-4xl mx-auto flex flex-col items-center gap-lg">
+<!-- Question Card -->
+<div class="text-center bg-surface-container-lowest p-xl rounded-[4rem] shadow-[0_20px_40px_rgba(172,53,9,0.08)] border border-surface-variant/50 w-full max-w-2xl transform transition-transform hover:-translate-y-2 duration-300 relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-secondary-fixed/30 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary-fixed/30 rounded-full blur-3xl"></div>
+<h2 class="font-display-lg text-display-lg text-primary mb-md relative z-10">Hôm nay ăn gì?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant relative z-10">Nhấn nút bên dưới để vận may lên tiếng!</p>
+</div>
+<!-- Big Spin Button -->
+<button class="group relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary to-primary-container shadow-[0_20px_40px_rgba(172,53,9,0.3)] hover:shadow-[0_30px_60px_rgba(172,53,9,0.4)] transform hover:scale-105 active:scale-95 transition-all duration-300 flex flex-col items-center justify-center gap-sm overflow-hidden border-8 border-surface-container-lowest">
+<div class="absolute inset-0 bg-white/20 group-hover:bg-transparent transition-colors duration-300 rounded-full"></div>
+<span class="material-symbols-outlined text-on-primary text-[64px] md:text-[80px] relative z-10" style="font-variation-settings: 'FILL' 1;">ramen_dining</span>
+<span class="font-headline-lg text-headline-lg text-on-primary font-black tracking-wider relative z-10">QUAY</span>
+</button>
+<!-- Filters -->
+<div class="flex flex-wrap justify-center gap-sm mt-md">
+<button class="px-md py-sm bg-primary-fixed text-on-primary-fixed font-label-md text-label-md rounded-full hover:bg-primary-fixed-dim transition-colors shadow-sm">
+                    Rẻ
+                </button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface font-label-md text-label-md rounded-full hover:bg-surface-variant transition-colors shadow-sm">
+                    Gần
+                </button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface font-label-md text-label-md rounded-full hover:bg-surface-variant transition-colors shadow-sm">
+                    Ăn một mình
+                </button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface font-label-md text-label-md rounded-full hover:bg-surface-variant transition-colors shadow-sm">
+                    Ăn nhóm
+                </button>
+</div>
+<!-- Result Section (Placeholder) -->
+<div class="mt-xl w-full max-w-3xl bg-secondary-fixed/20 p-lg rounded-[2rem] border border-secondary-fixed-dim/30 flex flex-col md:flex-row items-center gap-lg">
+<div class="w-40 h-40 md:w-48 md:h-48 shrink-0 rounded-full bg-surface-container-lowest shadow-md overflow-hidden flex items-center justify-center">
+<img alt="Bún chả illustration" class="w-full h-full object-cover" data-alt="A stylized, appetizing illustration of Bun Cha, a Vietnamese dish with grilled pork, noodles, and fresh herbs. The colors are vibrant warm oranges, greens, and yellows, fitting a joyful, foodie-friendly light mode aesthetic. The background is simple and clean, highlighting the deliciousness of the food in a playful, modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFeDWifwbgH5Scinkx7sbK8mssoLW9dnOFKrOtjpc6kiKDB2vRrCW_pDIROSwcZcFASkyGPt7uXfYrZehFEzn6o10tqJ_Rqd8yDjnoLMT9InmvXDyF7IOKL2qZhmKgr4Wm2GEl_O61mqhhwC8XtbiHpjj3mASvSUZfXlKHaMWdP5dIVbxYlCZpMzPB3JweDyzROutFa7hRpdyjgWQ1NIIzK_tJRvbIppy1f9K2diwnttCNK_uQbNcP-un-WzgvZ-ZnCkXf3mxDrhZd"/>
+</div>
+<div class="text-center md:text-left flex-1">
+<h3 class="font-headline-md text-headline-md text-secondary mb-sm">Đừng suy nghĩ nữa, ăn Bún chả đi!</h3>
+<p class="font-body-md text-body-md text-on-secondary-container mb-md">Món ăn hoàn hảo cho ngày hôm nay. Thơm ngon, đậm đà, giải quyết ngay cơn đói.</p>
+<button class="px-lg py-sm bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-full hover:bg-secondary-fixed-dim transition-colors shadow-sm inline-flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">map</span>
+                        Tìm quán gần đây
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

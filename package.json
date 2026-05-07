@@ -1,0 +1,40 @@
+{
+  "name": "whichfoodtoday",
+  "version": "1.0.0",
+  "description": "App quyết định hôm nay ăn gì",
+  "main": "main.js",
+  "author": "Shawn Tran",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.shawntran.whichfoodtoday",
+    "productName": "Which Food Today",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    }
+  }
+
+}

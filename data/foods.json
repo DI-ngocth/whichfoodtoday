@@ -1,0 +1,83 @@
+[
+  {
+    "id": "1",
+    "name": "Phở bò",
+    "price": "cheap",
+    "tags": [
+      "gần",
+      "một mình"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "2",
+    "name": "Bún đậu mắm tôm",
+    "price": "cheap",
+    "tags": [
+      "gần",
+      "một mình",
+      "ăn nhanh"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "3",
+    "name": "Cơm tấm sườn",
+    "price": "cheap",
+    "tags": [
+      "gần",
+      "một mình"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "4",
+    "name": "Lẩu thái hải sản",
+    "price": "expensive",
+    "tags": [
+      "nhóm"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "5",
+    "name": "Bánh mì thịt",
+    "price": "cheap",
+    "tags": [
+      "gần",
+      "một mình",
+      "ăn nhanh"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "6",
+    "name": "Bún bò Huế",
+    "price": "cheap",
+    "tags": [
+      "gần",
+      "một mình"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "7",
+    "name": "Gà nướng muối ớt",
+    "price": "medium",
+    "tags": [
+      "nhóm",
+      "gần"
+    ],
+    "lastEaten": "2026-05-07"
+  },
+  {
+    "id": "8",
+    "name": "Hủ tiếu Nam Vang",
+    "price": "cheap",
+    "tags": [
+      "gần",
+      "một mình"
+    ],
+    "lastEaten": "2026-05-07"
+  }
+]

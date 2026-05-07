@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh sách món - Hôm nay ăn gì?</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3f3",
+                    "surface-dim": "#dadada",
+                    "on-secondary-container": "#6e5400",
+                    "on-surface-variant": "#59413a",
+                    "on-tertiary-fixed-variant": "#005318",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#ff7043",
+                    "secondary": "#765b00",
+                    "surface": "#f9f9f9",
+                    "tertiary-container": "#5aae5f",
+                    "secondary-fixed": "#ffdf93",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#852300",
+                    "primary-fixed": "#ffdbd0",
+                    "tertiary": "#126d27",
+                    "on-primary-fixed": "#3a0a00",
+                    "error": "#ba1a1a",
+                    "outline": "#8d7169",
+                    "tertiary-fixed": "#9ff79f",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2f3131",
+                    "outline-variant": "#e0bfb6",
+                    "tertiary-fixed-dim": "#83da85",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#641800",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-bright": "#f9f9f9",
+                    "primary": "#ac3509",
+                    "on-secondary-fixed-variant": "#594400",
+                    "primary-fixed-dim": "#ffb59f",
+                    "on-tertiary-fixed": "#002105",
+                    "secondary-container": "#fdc825",
+                    "inverse-primary": "#ffb59f",
+                    "surface-tint": "#ac3509",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#003d0f",
+                    "surface-container-high": "#e8e8e8",
+                    "secondary-fixed-dim": "#f3c01a",
+                    "on-background": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#241a00",
+                    "on-surface": "#1a1c1c",
+                    "background": "#f9f9f9",
+                    "surface-container": "#eeeeee",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "margin": "48px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "sm": "12px",
+                    "lg": "40px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-md": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md">
+<!-- SideNavBar -->
+<nav class="fixed h-screen w-64 left-0 top-0 pt-xl bg-surface-container-low dark:bg-surface-container-lowest shadow-[20px_0_40px_rgba(0,0,0,0.05)] flex flex-col gap-md px-md py-lg border-r border-outline-variant/20 z-40 hidden md:flex">
+<div class="mb-lg px-sm">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Đang đói?</h1>
+<p class="text-on-surface-variant mt-xs">Chọn món ngay thôi!</p>
+</div>
+<div class="flex-1 flex flex-col gap-sm">
+<a class="flex items-center gap-sm px-md py-sm rounded-xl text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant/50 hover:scale-105 hover:shadow-md transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">casino</span>
+<span class="font-label-md text-label-md">Quay món</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-xl bg-primary-container text-on-primary-container font-bold scale-105 shadow-sm transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span class="font-label-md text-label-md">Danh sách món</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-xl text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant/50 hover:scale-105 hover:shadow-md transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-md text-label-md">Cài đặt</span>
+</a>
+</div>
+<div class="mt-auto px-sm pt-md">
+<button class="w-full bg-primary hover:bg-surface-tint text-on-primary font-label-md text-label-md py-sm rounded-full shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined">lightbulb</span>
+                Gợi ý ngẫu nhiên
+            </button>
+</div>
+</nav>
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden flex justify-between items-center px-lg py-sm w-full bg-surface/80 dark:bg-on-background/80 backdrop-blur-md shadow-sm fixed top-0 z-50">
+<div class="text-headline-lg font-headline-lg font-extrabold text-primary dark:text-primary-fixed-dim tracking-tight">
+            Hôm nay ăn gì?
+        </div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary-container transition-colors duration-200 active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-margin pt-[88px] md:pt-margin relative">
+<div class="max-w-[1000px] mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary mb-xs">Danh sách món</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Kho tàng ẩm thực của bạn, luôn sẵn sàng phục vụ.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative w-full md:w-72">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full bg-surface-container-high border-none rounded-full py-sm pl-[40px] pr-md text-body-md text-on-surface focus:ring-2 focus:ring-primary shadow-inner placeholder-outline" placeholder="Tìm kiếm món ăn..." type="text"/>
+</div>
+</div>
+<!-- Food Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Food Card 1 -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(172,53,9,0.05)] hover:shadow-[0_15px_40px_rgba(172,53,9,0.1)] hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10 group relative">
+<div class="absolute top-sm right-sm z-10 flex gap-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="bg-surface/80 backdrop-blur-sm p-xs rounded-full text-on-surface hover:text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="bg-surface/80 backdrop-blur-sm p-xs rounded-full text-error hover:bg-error-container shadow-sm">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="h-48 w-full bg-surface-variant relative overflow-hidden">
+<img alt="Delicious pizza" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-quality, appetizing close-up photograph of a delicious pizza with melted cheese, pepperoni, and fresh basil leaves on a wooden table. The lighting is warm and bright, creating a joyful and inviting mood, consistent with a high-end food photography style. The colors are vibrant, popping against a subtle, slightly blurred background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_nBfnW2jewT3Ng8UpDvQw1F2UYuClKUlgAsSLC2uO92IzPAtGRnuExG8KuazDwBf8U_HkJaCjwyDfnbQ_YB4fTACp8Iv_PGqIpYye7xD69uEntKpy_iJE9oR-hqhkheh_ioLuby1qSYVtSt8lw0VxXduKA22YgAf6VhUPQ-CiKAEvVLGoUa_glbGtOWkcUR0YUpKkkh_ej4JRIbHIJB1fVdPKlCF391Hx7gK3bRMjfbWRfMbmoqycbYmKKL5eLZw4mAacbWutpJeE"/>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Pizza Margherita</h3>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">attach_money</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">attach_money</span>
+<span class="material-symbols-outlined text-[18px] text-surface-dim" style="font-variation-settings: 'FILL' 0;">attach_money</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md px-sm py-[2px] rounded-full">Ý</span>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-md text-label-md px-sm py-[2px] rounded-full">Nhanh</span>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/20 flex items-center gap-xs text-on-surface-variant text-[14px]">
+<span class="material-symbols-outlined text-[16px]">history</span>
+                            Lần cuối: Hôm qua
+                        </div>
+</div>
+</div>
+<!-- Food Card 2 -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(172,53,9,0.05)] hover:shadow-[0_15px_40px_rgba(172,53,9,0.1)] hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10 group relative">
+<div class="absolute top-sm right-sm z-10 flex gap-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="bg-surface/80 backdrop-blur-sm p-xs rounded-full text-on-surface hover:text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="bg-surface/80 backdrop-blur-sm p-xs rounded-full text-error hover:bg-error-container shadow-sm">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="h-48 w-full bg-surface-variant relative overflow-hidden">
+<img alt="Healthy salad bowl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant and fresh salad bowl filled with mixed greens, avocado slices, cherry tomatoes, and quinoa. Shot from a slightly overhead angle in a bright, modern setting with soft, diffused natural light. The aesthetic is clean and minimalist, emphasizing the healthy and colorful ingredients against a stark white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9t3zoIWsEmSZj48dLnLgwBQ0wU0460rPP7AfpZjW4CFL-hUv1F-4tcMVyO95nAxNA4FFw5aLWwD3-PaILaV5yKWiCZoUXJ76caXlYfHLJxBOI3aCsjS0xI-edfdtJ3oIsR6IPX-HZEN_abWmS4lV41cYuPGL0Ov1PdmZFQ5u4nP4XYI5FGcGvXq5iXzjQtxfNzAlO6h3FoUk-WfRz7lvVV1e5eQK_wy7LGEVppoFk3mZqw71W6HomOPnUTBd22hA4wBU-SYxZJ1bV"/>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Salad Bơ Quinoa</h3>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">attach_money</span>
+<span class="material-symbols-outlined text-[18px] text-surface-dim" style="font-variation-settings: 'FILL' 0;">attach_money</span>
+<span class="material-symbols-outlined text-[18px] text-surface-dim" style="font-variation-settings: 'FILL' 0;">attach_money</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md px-sm py-[2px] rounded-full">Healthy</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md px-sm py-[2px] rounded-full">Chay</span>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/20 flex items-center gap-xs text-on-surface-variant text-[14px]">
+<span class="material-symbols-outlined text-[16px]">history</span>
+                            Lần cuối: 3 ngày trước
+                        </div>
+</div>
+</div>
+<!-- Food Card 3 -->
+<div class="bg-surface rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(172,53,9,0.05)] hover:shadow-[0_15px_40px_rgba(172,53,9,0.1)] hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10 group relative">
+<div class="absolute top-sm right-sm z-10 flex gap-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button class="bg-surface/80 backdrop-blur-sm p-xs rounded-full text-on-surface hover:text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="bg-surface/80 backdrop-blur-sm p-xs rounded-full text-error hover:bg-error-container shadow-sm">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="h-48 w-full bg-surface-variant relative overflow-hidden">
+<img alt="Spicy Ramen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A steaming bowl of spicy ramen noodles with a soft-boiled egg, sliced pork belly, and chopped scallions. The image is taken close up, focusing on the rich, deep red broth and textures. Warm, dramatic lighting highlights the steam rising from the bowl, creating a cozy and appetizing atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAObqBb3f1sGnyyOMO5_QuuXpO8CpVZLq8I9wIL80yl1R_QLNV8Av9mQ5HQvwx5PiFMrmbzjmysOx_TyCKkzSbvjCM5vA7pWh1ORHShyvcxirVZq-2eU6xAYJjv5v1vsdk9Iui6p-325xiR2O8lxd3lPIdJWglGzPPuCZUQ94WmElFVRpIAkEMarhRXBGExSmRo2Px3LAFChfhxTMm0gPeryCi0hRI1EST_WqdYIAAB7MRzO6rajh6gGXH0zUMYNAlgZBDSsXC4eD05"/>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Ramen Cay Nồng</h3>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">attach_money</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">attach_money</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">attach_money</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-error-container text-on-error-container font-label-md text-label-md px-sm py-[2px] rounded-full">Cay</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md px-sm py-[2px] rounded-full">Nhật Bản</span>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/20 flex items-center gap-xs text-on-surface-variant text-[14px]">
+<span class="material-symbols-outlined text-[16px]">history</span>
+                            Lần cuối: Tuần trước
+                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-lg right-lg bg-primary text-on-primary w-14 h-14 rounded-2xl shadow-xl hover:shadow-2xl hover:bg-surface-tint hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center group z-50">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-90 transition-transform duration-300">add</span>
+<span class="absolute right-full mr-sm bg-inverse-surface text-inverse-on-surface px-sm py-[6px] rounded-lg font-label-md text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">Thêm món</span>
+</button>
+</main>
+</body></html>
