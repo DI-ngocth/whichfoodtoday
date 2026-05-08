@@ -20,9 +20,6 @@ jobs:
           - os: windows-latest
             artifact: dist/*.exe
             name: Windows
-          - os: ubuntu-latest
-            artifact: dist/*.AppImage
-            name: Linux
 
     steps:
       - name: Checkout Code
@@ -38,7 +35,7 @@ jobs:
         run: npm install
 
       - name: Build Electron App
-        run: npm run build
+        run: npm run build -- --publish=never
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
